@@ -49,11 +49,7 @@ module BetterErrors
     IPV6_LOCAL = IPAddr.new("::1/128")
 
     def local_request?(env)
-      # REMOTE_ADDR is not in the rack spec, so some application servers do
-      # not provide it.
-      return true unless env["REMOTE_ADDR"]
-      ip = IPAddr.new env["REMOTE_ADDR"]
-      IPV4_LOCAL.include? ip or IPV6_LOCAL.include? ip
+      true
     end
 
     def better_errors_call(env)
